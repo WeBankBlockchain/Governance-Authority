@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.webank.authmanager.config.SystemEnvironmentConfig,\
+com.webank.authmanager.config.Web3jV2BeanConfig,\
+com.webank.authmanager.config.EthTransactionBeanConfig\
