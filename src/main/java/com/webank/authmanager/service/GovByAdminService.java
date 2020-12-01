@@ -2,7 +2,8 @@ package com.webank.authmanager.service;
 
 import com.webank.authmanager.contract.AuthManager;
 import com.webank.authmanager.utils.TxReceiptUtils;
-import org.fisco.bcos.web3j.protocol.core.methods.response.TransactionReceipt;
+import org.fisco.bcos.sdk.model.TransactionReceipt;
+
 /**
  * @author aaronchu
  * @Description
@@ -21,7 +22,7 @@ public class GovByAdminService {
      * @throws Exception
      */
     public void transferAdminAuth(String newAddress) throws Exception{
-        TransactionReceipt r = authManager.transferAdminAuth(newAddress).send();
+        TransactionReceipt r = authManager.transferAdminAuth(newAddress);
         TxReceiptUtils.ensureTxSucceed(r);
     }
 

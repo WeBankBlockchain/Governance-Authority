@@ -12,7 +12,8 @@
 
 package com.webank.authmanager.utils;
 
-import org.fisco.bcos.web3j.crypto.Hash;
+
+import org.fisco.bcos.sdk.crypto.hash.Hash;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
@@ -26,8 +27,15 @@ import java.util.Arrays;
  */
 public class FunctionUtils {
 
+    public static byte[] resolveFuncSig(String functionName, Hash hash){
+
+        byte[] funcSig = Arrays.copyOfRange(hash.hash(functionName.getBytes(StandardCharsets.UTF_8)), 0, 4);
+        return funcSig;
+    }
+
     public static byte[] resolveFuncSig(String functionName){
-        byte[] funcSig = Arrays.copyOfRange(Hash.sha3(functionName.getBytes(StandardCharsets.UTF_8)), 0, 4);
+
+        byte[] funcSig = Arrays.copyOfRange(HashUtils.hash(functionName.getBytes(StandardCharsets.UTF_8)), 0, 4);
         return funcSig;
     }
 }

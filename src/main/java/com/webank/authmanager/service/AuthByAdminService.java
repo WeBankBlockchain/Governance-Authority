@@ -2,6 +2,7 @@ package com.webank.authmanager.service;
 
 import com.webank.authmanager.contract.AuthManager;
 import com.webank.authmanager.utils.TxReceiptUtils;
+import org.fisco.bcos.sdk.crypto.hash.Hash;
 
 import java.math.BigInteger;
 
@@ -17,22 +18,22 @@ public class AuthByAdminService extends BasicAuthService {
     }
 
     public void createGroup(String group, BigInteger mode) throws Exception{
-        TxReceiptUtils.ensureTxSucceed(this.authManager.createGroup(group, mode).send());
+        TxReceiptUtils.ensureTxSucceed(this.authManager.createGroup(group, mode));
     }
 
     public void addAccountToGroup(String account, String group) throws Exception{
-        TxReceiptUtils.ensureTxSucceed(this.authManager.addAccountToGroup(account, group).send());
+        TxReceiptUtils.ensureTxSucceed(this.authManager.addAccountToGroup(account, group));
     }
 
     public void addFunctionToGroup(String contract, String functionName, String group) throws Exception{
-        TxReceiptUtils.ensureTxSucceed(this.authManager.addFunctionToGroup(contract, functionName, group).send());
+        TxReceiptUtils.ensureTxSucceed(this.authManager.addFunctionToGroup(contract, functionName, group));
     }
 
     public void removeAccountFromGroup(String account, String group) throws Exception{
-        TxReceiptUtils.ensureTxSucceed(this.authManager.removeAccountFromGroup(account, group).send());
+        TxReceiptUtils.ensureTxSucceed(this.authManager.removeAccountFromGroup(account, group));
     }
 
     public void removeFunctionFromGroup(String contract, String functionName, String group) throws Exception{
-        TxReceiptUtils.ensureTxSucceed(this.authManager.removeFunctionFromGroup(contract, functionName, group).send());
+        TxReceiptUtils.ensureTxSucceed(this.authManager.removeFunctionFromGroup(contract, functionName, group));
     }
 }

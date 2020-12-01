@@ -12,15 +12,9 @@
 
 package com.webank.authmanager.utils;
 
-import com.webank.authmanager.contract.AuthManager;
 import com.webank.authmanager.exception.AuthException;
 import com.webank.authmanager.exception.ErrorEnums;
-import org.fisco.bcos.web3j.protocol.core.methods.response.TransactionReceipt;
-import org.fisco.bcos.web3j.tx.txdecode.InputAndOutputResult;
-import org.fisco.bcos.web3j.tx.txdecode.ResultEntity;
-import org.fisco.bcos.web3j.utils.Numeric;
-
-import java.math.BigInteger;
+import org.fisco.bcos.sdk.model.TransactionReceipt;
 
 /**
  * TransactionUtils
@@ -37,6 +31,7 @@ public class TxReceiptUtils {
         }
     }
 
+    /*
     public static Boolean decodeResultAsBoolean(TransactionReceipt receipt) throws Exception {
         ensureTxSucceed(receipt);
         InputAndOutputResult r =
@@ -49,4 +44,6 @@ public class TxReceiptUtils {
         Boolean v = (Boolean) entity.getData();
         return v;
     }
+
+     */
 }

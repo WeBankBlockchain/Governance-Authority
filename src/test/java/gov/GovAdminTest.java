@@ -12,25 +12,15 @@
 
 package gov;
 
-import com.webank.authmanager.App;
-import com.webank.authmanager.config.SystemEnvironmentConfig;
 import com.webank.authmanager.contract.AuthManager;
-import com.webank.authmanager.factory.AuthManagerFactory;
 import com.webank.authmanager.service.GovByAdminService;
 import common.BasicTest;
 import common.ContractCallContext;
 import lombok.extern.slf4j.Slf4j;
-import org.fisco.bcos.web3j.crypto.Credentials;
-import org.fisco.bcos.web3j.protocol.Web3j;
-import org.fisco.bcos.web3j.protocol.core.methods.response.TransactionReceipt;
-import org.fisco.bcos.web3j.tx.gas.ContractGasProvider;
+import org.fisco.bcos.sdk.crypto.keypair.CryptoKeyPair;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * GovAdminTest
@@ -44,7 +34,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class GovAdminTest extends BasicTest {
 
     @Autowired
-    private Credentials credentials;
+    private CryptoKeyPair credentials;
 
     @Test
     public void test() throws Exception{
@@ -52,7 +42,7 @@ public class GovAdminTest extends BasicTest {
         AuthManager authManager = factory.createAdmin();
         log.info(authManager.getContractAddress());
 
-        boolean isAdmin = authManager.isAdmin().send();
+        boolean isAdmin = authManager.isAdmin();
         Assert.assertTrue(isAdmin);
 
         //Transfer
@@ -61,14 +51,14 @@ public class GovAdminTest extends BasicTest {
         govByAdminService.transferAdminAuth(finalAdmin);
 
         //Verify
-        isAdmin = authManager.isAdmin().send();
+        isAdmin = authManager.isAdmin();
         Assert.assertFalse(isAdmin);
 
         ContractCallContext ctx = new ContractCallContext("0xca8f81734944176eb1fa83cc1d01c594d64caa5387fe665688e8d30a5b6a3e62",
                 "bc982d507fc05f0e3d94be813b35efe40a708fe35ffe4b7500c157f5be01ecabac4c1ba6e35cbfbf3e8a09bad0b96505939b4422a4b6a613c79ab85d1a80fced",
                 finalAdmin);
         authManager = ctx.getAuthManager(authManager);//From final admin's perspective
-        isAdmin = authManager.isAdmin().send();
+        isAdmin = authManager.isAdmin();
         Assert.assertTrue(isAdmin);
     }
 

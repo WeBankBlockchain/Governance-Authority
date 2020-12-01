@@ -18,12 +18,9 @@ import com.webank.authmanager.factory.AuthManagerFactory;
 import com.webank.authmanager.service.AuthByAdminService;
 import common.BasicTest;
 import lombok.extern.slf4j.Slf4j;
-import org.fisco.bcos.web3j.crypto.Credentials;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.List;
 
 /**
  * AuthSingleService
@@ -157,23 +154,7 @@ public class AuthByAdminServiceTest extends BasicTest {
         System.out.println(canCall);
     }
 
-    @Test
-    public void testAddFunctionToDuplicateGroups() throws Exception{
-        String group1 = "group1";
-        String group2 = "group2";
-        AuthManager authManager = authManagerFactory.createAdmin();
-        AuthByAdminService authByAdminService = new AuthByAdminService(authManager);
-        authByAdminService.createGroup(group1, AuthConstants.ACL_WHITELIST_MODE);
-        authByAdminService.createGroup(group1, AuthConstants.ACL_WHITELIST_MODE);
 
-        authByAdminService.addFunctionToGroup(contract, function, group1);
-        boolean containsFunction = authByAdminService.containsFunction(group1, contract, function);
-        Assert.assertTrue(containsFunction);
-
-        authByAdminService.addFunctionToGroup(contract, function, group2);
-        containsFunction = authByAdminService.containsFunction(group2, contract, function);
-        Assert.assertTrue(containsFunction);
-    }
 
 }
 

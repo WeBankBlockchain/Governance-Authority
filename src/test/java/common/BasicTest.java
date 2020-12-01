@@ -15,8 +15,8 @@ package common;
 import com.webank.authmanager.App;
 import com.webank.authmanager.config.SystemEnvironmentConfig;
 import com.webank.authmanager.factory.AuthManagerFactory;
-import org.fisco.bcos.web3j.protocol.Web3j;
-import org.fisco.bcos.web3j.tx.gas.ContractGasProvider;
+import org.fisco.bcos.sdk.client.Client;
+import org.fisco.bcos.sdk.crypto.hash.Hash;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,16 +40,13 @@ import java.util.stream.Collectors;
 public class BasicTest {
 
     @Autowired
-    public Web3j web3j;
+    public Client client;
 
     @Autowired
     public SystemEnvironmentConfig systemEnvironmentConfig;
 
     @Autowired
     public AuthManagerFactory factory;
-
-    @Autowired
-    public ContractGasProvider gasProvider;
 
     public static BasicTest INSTANCE;
 

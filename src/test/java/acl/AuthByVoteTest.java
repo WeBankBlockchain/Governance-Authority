@@ -12,13 +12,10 @@
 
 package acl;
 
-import com.alibaba.druid.support.json.JSONUtils;
 import com.webank.authmanager.constant.AuthConstants;
 import com.webank.authmanager.contract.AuthManager;
 import com.webank.authmanager.model.RequestInfo;
-import com.webank.authmanager.service.AuthByAdminService;
 import com.webank.authmanager.service.AuthByVoteService;
-import com.webank.authmanager.utils.TxReceiptUtils;
 import common.BasicTest;
 import common.ContractCallContext;
 import org.junit.Assert;

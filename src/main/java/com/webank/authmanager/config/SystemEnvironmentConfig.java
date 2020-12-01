@@ -15,7 +15,7 @@
  */
 package com.webank.authmanager.config;
 
-import org.fisco.bcos.web3j.crypto.EncryptType;
+import com.webank.authmanager.utils.HashUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -40,6 +40,7 @@ public class SystemEnvironmentConfig{
     private String nodeStr;
     private int groupId;
     private int encryptType;
+    private String certPath;
     private String privateKeyPem;
     private String privateKey;
 }

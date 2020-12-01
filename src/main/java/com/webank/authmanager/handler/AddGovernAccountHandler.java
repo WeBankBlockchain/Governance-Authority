@@ -12,17 +12,14 @@
 
 package com.webank.authmanager.handler;
 
-import com.webank.authmanager.constant.AuthConstants;
 import com.webank.authmanager.contract.AuthManager;
 import com.webank.authmanager.model.RequestInfo;
 import com.webank.authmanager.utils.TxReceiptUtils;
-import org.fisco.bcos.web3j.protocol.core.methods.response.TransactionReceipt;
-import org.fisco.bcos.web3j.tuples.generated.Tuple7;
-import org.fisco.bcos.web3j.tx.txdecode.EventResultEntity;
+import org.fisco.bcos.sdk.abi.datatypes.generated.tuples.generated.Tuple7;
+import org.fisco.bcos.sdk.model.TransactionReceipt;
 
 import java.math.BigInteger;
 import java.util.List;
-import java.util.Map;
 
 /**
  * AddGovernAccountHandler
@@ -41,33 +38,33 @@ public class AddGovernAccountHandler {
 
     //Add govern account
     public void createRequest(String account) throws Exception{
-        TransactionReceipt r = this.authManager.requestAddGovernor(account).send();
+        TransactionReceipt r = this.authManager.requestAddGovernor(account);
         TxReceiptUtils.ensureTxSucceed(r);
     }
 
     public void deleteRequest(String account) throws Exception{
-        TransactionReceipt r = this.authManager.deleteAddGovernorReq(account).send();
+        TransactionReceipt r = this.authManager.deleteAddGovernorReq(account);
         TxReceiptUtils.ensureTxSucceed(r);
     }
 
     public void confirmRequest(String account) throws Exception{
-        TransactionReceipt r = this.authManager.approveAddGovernorReq(account).send();
+        TransactionReceipt r = this.authManager.approveAddGovernorReq(account);
         TxReceiptUtils.ensureTxSucceed(r);
     }
 
     public void executeRequest(String account) throws Exception{
-        TransactionReceipt r = this.authManager.executeAddGovernorReq(account).send();
+        TransactionReceipt r = this.authManager.executeAddGovernorReq(account);
         TxReceiptUtils.ensureTxSucceed(r);
     }
 
     public List<String> getPendingAccounts() throws Exception{
-        List l = this.authManager.getGovernorsToAdd().send();
+        List l = this.authManager.getGovernorsToAdd();
         return l;
     }
 
     public RequestInfo getRequest(String account) throws Exception{
         Tuple7<BigInteger, String, BigInteger, String, BigInteger, BigInteger, BigInteger> request =
-                this.authManager.getAddGovRequest(account).send();
+                this.authManager.getAddGovRequest(account);
         return new RequestInfo(request.getValue1(), request.getValue2(), request.getValue3(),
                 request.getValue4(), request.getValue5() ,request.getValue6(), request.getValue7());
     }

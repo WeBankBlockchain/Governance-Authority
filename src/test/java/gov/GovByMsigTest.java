@@ -18,15 +18,11 @@ import com.webank.authmanager.service.GovByMsigService;
 import common.BasicTest;
 import common.ContractCallContext;
 import lombok.extern.slf4j.Slf4j;
-import org.fisco.bcos.web3j.protocol.core.methods.response.TransactionReceipt;
-import org.fisco.bcos.web3j.tx.txdecode.InputAndOutputResult;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.math.BigInteger;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * GovByMsigTest
@@ -64,7 +60,7 @@ public class GovByMsigTest extends BasicTest {
         service1.getAddGovernAccountHandler().createRequest(pending.getAddress());
         log.info("request create complete");
         List<String> pendingAccounts = service1.getAddGovernAccountHandler().getPendingAccounts();
-        Assert.assertTrue(pending.getAddress().equalsIgnoreCase(pendingAccounts.get(0)));
+        Assert.assertTrue(pending.getAddress().equalsIgnoreCase(pendingAccounts.get(0).substring(2)));
         //Vote
         service1.getAddGovernAccountHandler().confirmRequest(pending.getAddress());
         service2.getAddGovernAccountHandler().confirmRequest(pending.getAddress());
@@ -80,13 +76,13 @@ public class GovByMsigTest extends BasicTest {
         //Create contract with gov mode
         ContractCallContext gov1 = new ContractCallContext("0x79ce1b9fc3bbea4c5ccab8650c2d3af304a6c6afc5a69c09dafc5fb90eb27af2",
                 "63063f696ddcb142761e33d2223510152a68de88dc6ba1fb1d0c96aefc087efa4b11213d556baea7f8b3bc61427e7c48447602d83134ed7a7c2dfd51c6cf9f17"
-                ,"0x0f935671bc0ff46df02acfbd86379189dadafd7b");
+                ,"0f935671bc0ff46df02acfbd86379189dadafd7b");
         ContractCallContext gov2 = new ContractCallContext("0xb54ad7f2d8587dc3f8120d20287a9aae212d42f390d1d79fc11c56c96f2c73a7",
                 "e7efa954f73ae9b1bbaa7310b24efad45818894439b14dfea855f4e45d54a267dc613c1eb892224a87f54d55a79ef0e6c0fa48b2b6ba2dfaba0ac32133f74fa",
-                "0xec87b320b92cdf2d615b2a42e0aaf61090972517");
+                "ec87b320b92cdf2d615b2a42e0aaf61090972517");
         ContractCallContext gov3 = new ContractCallContext("0xca8f81734944176eb1fa83cc1d01c594d64caa5387fe665688e8d30a5b6a3e62",
                 "bc982d507fc05f0e3d94be813b35efe40a708fe35ffe4b7500c157f5be01ecabac4c1ba6e35cbfbf3e8a09bad0b96505939b4422a4b6a613c79ab85d1a80fced",
-                "0x5c5bf65a384cf078afe31ab4a6137e91f180a105");
+                "5c5bf65a384cf078afe31ab4a6137e91f180a105");
         AuthManager authManager1 = this.factory.createGovMsig(toAddresses(gov1, gov2, gov3), BigInteger.valueOf(2));
         authManager1 = gov1.getAuthManager(authManager1);
         GovByMsigService service1 = new GovByMsigService(authManager1);
@@ -97,7 +93,7 @@ public class GovByMsigTest extends BasicTest {
         RequestInfo requestInfo = service1.getRemoveGovernAccountHandler().getRequest(gov3.getAddress());
         log.info("request create complete");
         List<String> pendingAccounts = service1.getRemoveGovernAccountHandler().getPendingAccounts();
-        Assert.assertTrue(gov3.getAddress().equalsIgnoreCase(pendingAccounts.get(0)));
+        Assert.assertTrue(gov3.getAddress().equalsIgnoreCase(pendingAccounts.get(0).substring(2)));
         //Vote
         service1.getRemoveGovernAccountHandler().confirmRequest(gov3.getAddress());
         service2.getRemoveGovernAccountHandler().confirmRequest(gov3.getAddress());

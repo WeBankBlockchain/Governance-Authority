@@ -14,46 +14,39 @@ package com.webank.authmanager.factory;
 
 import com.webank.authmanager.constant.AuthConstants;
 import com.webank.authmanager.contract.AuthManager;
-import com.webank.authmanager.utils.TxReceiptUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang.NotImplementedException;
-import org.fisco.bcos.web3j.crypto.Credentials;
-import org.fisco.bcos.web3j.protocol.Web3j;
-import org.fisco.bcos.web3j.tx.gas.ContractGasProvider;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.fisco.bcos.sdk.client.Client;
+import org.fisco.bcos.sdk.crypto.keypair.CryptoKeyPair;
+import org.springframework.stereotype.Component;
 
 
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Slf4j
+@Component
 public class AuthManagerFactory {
 
-    private Web3j web3j;
+    private Client client;
 
-    private Credentials credentials;
+    private CryptoKeyPair credentials;
 
-    private ContractGasProvider gasProvider;
-
-    public AuthManagerFactory(Web3j web3j, Credentials credentials, ContractGasProvider gasProvider){
-        this.web3j = web3j;
+    public AuthManagerFactory(Client client, CryptoKeyPair credentials) {
+        this.client = client;
         this.credentials = credentials;
-        this.gasProvider = gasProvider;
     }
 
     public AuthManager createAdmin() throws Exception{
         AuthManager g = AuthManager
-                .deploy(web3j, credentials, gasProvider, AuthConstants.ADMIN_MODE, new ArrayList<String>(), new ArrayList<BigInteger>(), BigInteger.ZERO).send();
+                .deploy(client, credentials, AuthConstants.ADMIN_MODE, new ArrayList<String>(), new ArrayList<BigInteger>(), BigInteger.ZERO);
         log.info("AuthManagerDeployed:"+g.getContractAddress());
         return g;
     }
 
     public AuthManager createGovWeight(List<String> accounts, List<BigInteger> weights, BigInteger threshold) throws Exception{
         AuthManager g = AuthManager
-                .deploy(web3j, credentials, gasProvider, AuthConstants.GOVERNORS_MODE, accounts, weights, threshold).send();
+                .deploy(client, credentials, AuthConstants.GOVERNORS_MODE, accounts, weights, threshold);
         log.info("AuthManagerDeployed:"+g.getContractAddress());
         return g;
     }
@@ -67,7 +60,7 @@ public class AuthManagerFactory {
     }
 
     public AuthManager loadContract(String contractAddress) throws Exception{
-        return AuthManager.load(contractAddress, web3j, credentials, gasProvider);
+        return AuthManager.load(contractAddress, client, credentials);
     }
 
 

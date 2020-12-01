@@ -3,6 +3,8 @@ package com.webank.authmanager.service;
 import com.webank.authmanager.contract.AuthManager;
 import com.webank.authmanager.handler.*;
 import lombok.Getter;
+import org.fisco.bcos.sdk.crypto.hash.Hash;
+
 /**
  * @author aaronchu
  * @Description

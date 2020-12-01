@@ -15,9 +15,9 @@ package com.webank.authmanager;
 import com.webank.authmanager.contract.AuthManager;
 import com.webank.authmanager.factory.AuthManagerFactory;
 import com.webank.authmanager.service.*;
-import org.fisco.bcos.web3j.crypto.Credentials;
-import org.fisco.bcos.web3j.protocol.Web3j;
-import org.fisco.bcos.web3j.tx.gas.ContractGasProvider;
+import org.fisco.bcos.sdk.client.Client;
+import org.fisco.bcos.sdk.crypto.hash.Hash;
+import org.fisco.bcos.sdk.crypto.keypair.CryptoKeyPair;
 
 /**
  * AuthServiceFactory
@@ -28,8 +28,8 @@ import org.fisco.bcos.web3j.tx.gas.ContractGasProvider;
  */
 public class AuthServiceFactory {
 
-    public AuthManagerFactory getAuthManagerFactory(Web3j web3j, Credentials credentials, ContractGasProvider gasProvider){
-        return new AuthManagerFactory(web3j, credentials, gasProvider);
+    public AuthManagerFactory getAuthManagerFactory(Client client, CryptoKeyPair credentials){
+        return new AuthManagerFactory(client, credentials);
     }
 
     public GovByAdminService getGovByAdminService(AuthManager authManager){

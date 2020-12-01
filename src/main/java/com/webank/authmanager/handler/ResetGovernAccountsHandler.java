@@ -16,7 +16,7 @@ import com.webank.authmanager.constant.AuthConstants;
 import com.webank.authmanager.contract.AuthManager;
 import com.webank.authmanager.model.RequestInfo;
 import com.webank.authmanager.utils.TxReceiptUtils;
-import org.fisco.bcos.web3j.tuples.generated.Tuple7;
+import org.fisco.bcos.sdk.abi.datatypes.generated.tuples.generated.Tuple7;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -37,24 +37,24 @@ public class ResetGovernAccountsHandler {
     }
 
     public void createRequest(List<String> newGovernors, List<BigInteger> weights) throws Exception{
-        TxReceiptUtils.ensureTxSucceed(authManager.requestResetGovernors(newGovernors, weights).send());
+        TxReceiptUtils.ensureTxSucceed(authManager.requestResetGovernors(newGovernors, weights));
     }
 
     public void deleteRequest() throws Exception{
-        TxReceiptUtils.ensureTxSucceed(authManager.deleteSingle(AuthConstants.RESET_GOVERNORS_TXTYPE).send());
+        TxReceiptUtils.ensureTxSucceed(authManager.deleteSingle(AuthConstants.RESET_GOVERNORS_TXTYPE));
     }
 
     public void confirmRequest() throws Exception{
-        TxReceiptUtils.ensureTxSucceed(authManager.approveSingle(AuthConstants.RESET_GOVERNORS_TXTYPE).send());
+        TxReceiptUtils.ensureTxSucceed(authManager.approveSingle(AuthConstants.RESET_GOVERNORS_TXTYPE));
     }
 
     public void executeRequest() throws Exception{
-        TxReceiptUtils.ensureTxSucceed(authManager.executeResetGovernAccounts().send());
+        TxReceiptUtils.ensureTxSucceed(authManager.executeResetGovernAccounts());
     }
 
     public RequestInfo getResetGovernAccountsRequest() throws Exception{
         Tuple7<BigInteger, String, BigInteger, String, BigInteger, BigInteger, BigInteger> request =
-                this.authManager.getRequestSingle(AuthConstants.RESET_GOVERNORS_TXTYPE).send();
+                this.authManager.getRequestSingle(AuthConstants.RESET_GOVERNORS_TXTYPE);
         return new RequestInfo(request.getValue1(), request.getValue2(), request.getValue3(),
                 request.getValue4(), request.getValue5() ,request.getValue6(), request.getValue7());
     }

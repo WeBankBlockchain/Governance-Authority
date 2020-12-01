@@ -16,7 +16,7 @@ import com.webank.authmanager.constant.AuthConstants;
 import com.webank.authmanager.contract.AuthManager;
 import com.webank.authmanager.model.RequestInfo;
 import com.webank.authmanager.utils.TxReceiptUtils;
-import org.fisco.bcos.web3j.tuples.generated.Tuple7;
+import org.fisco.bcos.sdk.abi.datatypes.generated.tuples.generated.Tuple7;
 
 import java.math.BigInteger;
 
@@ -37,25 +37,25 @@ public class ResetThresholdHandler {
     }
 
     public void createRequest(int newThreshold) throws Exception{
-        TxReceiptUtils.ensureTxSucceed(this.authManager.requestSetThreshold(BigInteger.valueOf(newThreshold)).send());
+        TxReceiptUtils.ensureTxSucceed(this.authManager.requestSetThreshold(BigInteger.valueOf(newThreshold)));
     }
 
     public void deleteRequest() throws Exception{
-        TxReceiptUtils.ensureTxSucceed(this.authManager.deleteSingle(AuthConstants.RESET_THRESHOLD_TXTYPE).send());
+        TxReceiptUtils.ensureTxSucceed(this.authManager.deleteSingle(AuthConstants.RESET_THRESHOLD_TXTYPE));
     }
 
     public void confirmRequest() throws Exception{
-        TxReceiptUtils.ensureTxSucceed(this.authManager.approveSingle(AuthConstants.RESET_THRESHOLD_TXTYPE).send());
+        TxReceiptUtils.ensureTxSucceed(this.authManager.approveSingle(AuthConstants.RESET_THRESHOLD_TXTYPE));
     }
 
     public RequestInfo getResetRateRequest() throws Exception{
         Tuple7<BigInteger, String, BigInteger, String, BigInteger, BigInteger, BigInteger> request =
-                this.authManager.getRequestSingle(AuthConstants.RESET_THRESHOLD_TXTYPE).send();
+                this.authManager.getRequestSingle(AuthConstants.RESET_THRESHOLD_TXTYPE);
         return new RequestInfo(request.getValue1(), request.getValue2(), request.getValue3(),
                 request.getValue4(), request.getValue5() ,request.getValue6(), request.getValue7());
     }
 
     public void executeRequest() throws Exception {
-        TxReceiptUtils.ensureTxSucceed(this.authManager.executeSetThreshold().send());
+        TxReceiptUtils.ensureTxSucceed(this.authManager.executeSetThreshold());
     }
 }

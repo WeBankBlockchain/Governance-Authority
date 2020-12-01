@@ -14,7 +14,6 @@ package gov;
 
 import com.webank.authmanager.contract.AuthManager;
 import com.webank.authmanager.model.RequestInfo;
-import com.webank.authmanager.service.GovByMsigService;
 import com.webank.authmanager.service.GovByWeightedVoteService;
 import common.BasicTest;
 import common.ContractCallContext;

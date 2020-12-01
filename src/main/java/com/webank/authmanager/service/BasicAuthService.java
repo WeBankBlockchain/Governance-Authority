@@ -14,8 +14,7 @@ package com.webank.authmanager.service;
 
 import com.webank.authmanager.contract.AuthManager;
 import com.webank.authmanager.utils.FunctionUtils;
-
-import java.util.List;
+import org.fisco.bcos.sdk.crypto.hash.Hash;
 
 /**
  * BasicAuthService
@@ -34,14 +33,14 @@ class BasicAuthService {
 
     public boolean canCallFunction(String contract, String functionName, String account) throws Exception{
         byte[] funcSig = FunctionUtils.resolveFuncSig(functionName);
-        return this.authManager.canCallFunction(contract, funcSig, account).send();
+        return this.authManager.canCallFunction(contract, funcSig, account).booleanValue();
     }
 
     public boolean containsAccount(String group, String account) throws Exception{
-        return this.authManager.containsAccount(group, account).send();
+        return this.authManager.containsAccount(group, account).booleanValue();
     }
 
     public boolean containsFunction(String group, String contract, String function) throws Exception{
-        return this.authManager.containsFunction(group, contract, function).send();
+        return this.authManager.containsFunction(group, contract, function).booleanValue();
     }
 }

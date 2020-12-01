@@ -18,17 +18,18 @@ apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'eclipse'
-//apply plugin: 'solc-gradle-plugin'
+apply plugin: 'solc-gradle-plugin'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 group = 'com.webank'
 version = '0.0.1-SNAPSHOT'
-
-//solc{
-    //pkg = 'com.webank.authmanager.contract'
-//}
+/*
+solc{
+    pkg = 'org.example.contract'
+}
+*/
 
 
 repositories {
@@ -49,7 +50,9 @@ dependencies {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
         //exclude group: 'junit', module: 'junit'
     }
-    compile ('org.fisco-bcos:web3sdk:2.3.0')
+    compile ('org.fisco-bcos.java-sdk:java-sdk:2.6.1-SNAPSHOT') {
+        exclude group: 'org.slf4j'
+    }
 
 }
 

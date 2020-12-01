@@ -10,11 +10,12 @@
  *
  */
 
-package common;import com.webank.authmanager.contract.AuthManager;
+package common;
+
+import com.webank.authmanager.contract.AuthManager;
 import lombok.Getter;
-import org.fisco.bcos.web3j.crypto.Credentials;
-import org.fisco.bcos.web3j.protocol.Web3j;
-import org.fisco.bcos.web3j.tx.gas.ContractGasProvider;
+import org.fisco.bcos.sdk.crypto.keypair.CryptoKeyPair;
+import org.fisco.bcos.sdk.crypto.keypair.ECDSAKeyPair;
 
 /**
  * CallContext
@@ -33,13 +34,15 @@ public class ContractCallContext {
     private String address;
 
     public ContractCallContext(String privateKey, String publicKey, String address){
-        this.privateKey = privateKey;
-        this.publicKey = publicKey;
-        this.address = address;
+        this.privateKey = privateKey.startsWith("0x")?privateKey.substring(2):privateKey;
+        this.publicKey = publicKey.startsWith("0x")?publicKey.substring(2):publicKey;;
+        this.address =  address.startsWith("0x")?address.substring(2):address;
     }
 
     public AuthManager getAuthManager(AuthManager authManager){
-        return AuthManager.load(authManager.getContractAddress(), BasicTest.INSTANCE.web3j, Credentials.create(privateKey, publicKey), BasicTest.INSTANCE.gasProvider);
+        ECDSAKeyPair k = new ECDSAKeyPair();
+
+        return AuthManager.load(authManager.getContractAddress(), BasicTest.INSTANCE.client, k.createKeyPair(privateKey));
     }
 
 }

@@ -15,7 +15,7 @@ package com.webank.authmanager.handler;
 import com.webank.authmanager.contract.AuthManager;
 import com.webank.authmanager.model.RequestInfo;
 import com.webank.authmanager.utils.TxReceiptUtils;
-import org.fisco.bcos.web3j.tuples.generated.Tuple7;
+import org.fisco.bcos.sdk.abi.datatypes.generated.tuples.generated.Tuple7;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -36,29 +36,29 @@ public class RemoveGovernAccountHandler {
     }
 
     public void createRequest(String account) throws Exception{
-        TxReceiptUtils.ensureTxSucceed(this.authManager.requestRemoveGovernor(account).send());
+        TxReceiptUtils.ensureTxSucceed(this.authManager.requestRemoveGovernor(account));
     }
 
     public void deleteRequest(String account) throws Exception{
-        TxReceiptUtils.ensureTxSucceed(this.authManager.deleteRemoveGovernorReq(account).send());
+        TxReceiptUtils.ensureTxSucceed(this.authManager.deleteRemoveGovernorReq(account));
     }
 
     public void confirmRequest(String account) throws Exception{
-        TxReceiptUtils.ensureTxSucceed(this.authManager.approveRemoveGovernorReq(account).send());
+        TxReceiptUtils.ensureTxSucceed(this.authManager.approveRemoveGovernorReq(account));
     }
 
     public void executeRequest(String account) throws Exception{
-        TxReceiptUtils.ensureTxSucceed(this.authManager.executeRemoveGovernorReq(account).send());
+        TxReceiptUtils.ensureTxSucceed(this.authManager.executeRemoveGovernorReq(account));
     }
 
     public RequestInfo getRequest(String account) throws Exception{
         Tuple7<BigInteger, String, BigInteger, String, BigInteger, BigInteger, BigInteger> request =
-                this.authManager.getRemoveGovRequest(account).send();
+                this.authManager.getRemoveGovRequest(account);
         return new RequestInfo(request.getValue1(), request.getValue2(), request.getValue3(),
                 request.getValue4(), request.getValue5() ,request.getValue6(), request.getValue7());
     }
 
     public List<String> getPendingAccounts() throws Exception{
-        return this.authManager.getGovernorsToRemove().send();
+        return this.authManager.getGovernorsToRemove();
     }
 }

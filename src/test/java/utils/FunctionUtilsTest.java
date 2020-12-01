@@ -14,10 +14,11 @@ package utils;
 
 import com.webank.authmanager.utils.FunctionUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.fisco.bcos.web3j.crypto.EncryptType;
-import org.fisco.bcos.web3j.utils.Numeric;
+import org.fisco.bcos.sdk.crypto.hash.Hash;
+import org.fisco.bcos.sdk.utils.Hex;
 import org.junit.Assert;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * FunctionUtilsTest
@@ -32,13 +33,13 @@ public class FunctionUtilsTest {
     @Test
     public void test() throws Exception{
         byte[] bytes = FunctionUtils.resolveFuncSig("add(uint256,uint256)");
-        Assert.assertEquals("771602f7", Numeric.toHexStringNoPrefix(bytes));
+        Assert.assertEquals("771602f7", Hex.toHexString(bytes));
 
         bytes = FunctionUtils.resolveFuncSig("demo(uint256)");
-        Assert.assertEquals("071bd079", Numeric.toHexStringNoPrefix(bytes));
+        Assert.assertEquals("071bd079", Hex.toHexString(bytes));
 
         bytes = FunctionUtils.resolveFuncSig("set(uint256,string,uint256[])");
-        System.out.println(Numeric.toHexStringNoPrefix(bytes));
+        System.out.println( Hex.toHexString(bytes));
     }
 
 
