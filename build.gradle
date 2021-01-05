@@ -9,7 +9,7 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        //classpath 'com.webank:solc-gradle-plugin:1.0-SNAPSHOT'
+        classpath 'com.webank:solc-gradle-plugin:1.0-SNAPSHOT'
     }
 }
 
@@ -25,11 +25,11 @@ targetCompatibility = 1.8
 
 group = 'com.webank'
 version = '0.0.1-SNAPSHOT'
-/*
+
 solc{
-    pkg = 'org.example.contract'
+    pkg = 'com.webank.authmanager.contract'
 }
-*/
+
 
 
 repositories {
@@ -50,7 +50,7 @@ dependencies {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
         //exclude group: 'junit', module: 'junit'
     }
-    compile ('org.fisco-bcos.java-sdk:java-sdk:2.6.1-SNAPSHOT') {
+    compile ('org.fisco-bcos.java-sdk:java-sdk:2.7.0') {
         exclude group: 'org.slf4j'
     }
 

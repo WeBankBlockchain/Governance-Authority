@@ -36,11 +36,6 @@ import lombok.Data;
 @Data
 @Order(5)
 public class SystemEnvironmentConfig{
-    private String orgId;
-    private String nodeStr;
+    private String sdkConfigPath;
     private int groupId;
-    private int encryptType;
-    private String certPath;
-    private String privateKeyPem;
-    private String privateKey;
 }

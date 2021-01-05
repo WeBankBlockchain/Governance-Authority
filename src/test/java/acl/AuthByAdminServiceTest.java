@@ -14,10 +14,13 @@ package acl;
 
 import com.webank.authmanager.constant.AuthConstants;
 import com.webank.authmanager.contract.AuthManager;
+import com.webank.authmanager.contract.HelloWorld;
 import com.webank.authmanager.factory.AuthManagerFactory;
 import com.webank.authmanager.service.AuthByAdminService;
+import com.webank.authmanager.utils.TxReceiptUtils;
 import common.BasicTest;
 import lombok.extern.slf4j.Slf4j;
+import org.fisco.bcos.sdk.model.TransactionReceipt;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +40,15 @@ public class AuthByAdminServiceTest extends BasicTest {
 
     @Autowired
     private AuthManagerFactory authManagerFactory;
+
+    @Test
+    public void helo() throws Exception{
+        HelloWorld helloWorld = HelloWorld.deploy(client, client.getCryptoSuite().getCryptoKeyPair());
+        TransactionReceipt receipt = helloWorld.set("hi");
+        System.out.println(receipt.isStatusOK());
+        //TxReceiptUtils.ensureTxSucceed(receipt);
+    }
+
     @Test
     public void testWhiteRole() throws Exception{
         String groupName = "whiteGroup";
