@@ -24,7 +24,7 @@ public class SDKBeanConfig {
 
     @Bean
     public CryptoKeyPair cryptoKeyPair(Client client) throws ConfigException {
-        return client.getCryptoSuite().createKeyPair();
+        return client.getCryptoSuite().getCryptoKeyPair();
     }
 
     @Bean
