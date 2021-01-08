@@ -27,7 +27,7 @@ public class TxReceiptUtils {
 
     public static void ensureTxSucceed(TransactionReceipt receipt) throws Exception{
         if(!receipt.getStatus().equals("0x0")){
-            throw new AuthException(ErrorEnums.TxFailed.getDescription());
+            throw new AuthException(receipt.getMessage());
         }
     }
 
