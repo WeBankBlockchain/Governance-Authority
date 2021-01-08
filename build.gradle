@@ -9,7 +9,7 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath 'com.webank:solc-gradle-plugin:1.0-SNAPSHOT'
+     //   classpath 'com.webank:solc-gradle-plugin:1.0-SNAPSHOT'
     }
 }
 
@@ -18,7 +18,7 @@ apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'eclipse'
-apply plugin: 'solc-gradle-plugin'
+//apply plugin: 'solc-gradle-plugin'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -26,10 +26,12 @@ targetCompatibility = 1.8
 group = 'com.webank'
 version = '0.0.1-SNAPSHOT'
 
+/*
 solc{
     pkg = 'com.webank.authmanager.contract'
 }
 
+*/
 
 
 repositories {
