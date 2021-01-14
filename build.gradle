@@ -80,7 +80,7 @@ jar {
     exclude '**/*.xml'
     exclude '**/*.properties'
     exclude '**/*.yml'
-    exclude '**/spring.factories'
+    //exclude '**/spring.factories'
     from {
 
     }
