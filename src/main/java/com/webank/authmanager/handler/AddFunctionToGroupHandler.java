@@ -7,6 +7,7 @@ import com.webank.authmanager.model.RequestInfo;
 import com.webank.authmanager.utils.TxReceiptUtils;
 import org.fisco.bcos.sdk.abi.datatypes.generated.tuples.generated.Tuple3;
 import org.fisco.bcos.sdk.abi.datatypes.generated.tuples.generated.Tuple7;
+import org.fisco.bcos.sdk.model.TransactionReceipt;
 
 import java.math.BigInteger;
 
@@ -25,6 +26,7 @@ public class AddFunctionToGroupHandler {
 
     public void request(String contract, String function, String group) throws Exception{
         TxReceiptUtils.ensureTxSucceed(this.authManager.requestAddFunctionToGroup(contract, function, group));
+        TransactionReceipt r = this.authManager.requestAddFunctionToGroup(contract, function, group);
     }
 
     public void confirm() throws Exception{

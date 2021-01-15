@@ -14,7 +14,10 @@ package com.webank.authmanager.utils;
 
 import com.webank.authmanager.exception.AuthException;
 import com.webank.authmanager.exception.ErrorEnums;
+import org.fisco.bcos.sdk.model.RetCode;
 import org.fisco.bcos.sdk.model.TransactionReceipt;
+import org.fisco.bcos.sdk.transaction.codec.decode.ReceiptParser;
+import org.fisco.bcos.sdk.transaction.model.exception.ContractException;
 
 /**
  * TransactionUtils
@@ -25,10 +28,14 @@ import org.fisco.bcos.sdk.model.TransactionReceipt;
  */
 public class TxReceiptUtils {
 
-    public static void ensureTxSucceed(TransactionReceipt receipt) throws Exception{
-        if(!receipt.getStatus().equals("0x0")){
-            throw new AuthException(receipt.getStatus()+":"+receipt.getStatusMsg());
+    public static void ensureTxSucceed(TransactionReceipt receipt) throws AuthException {
+        try{
+            ReceiptParser.parseTransactionReceipt(receipt);
         }
+        catch (ContractException ex){
+            throw new AuthException(ex.getMessage());
+        }
+
     }
 
     /*
