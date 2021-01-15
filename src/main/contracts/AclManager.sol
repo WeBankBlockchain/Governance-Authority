@@ -19,15 +19,15 @@ contract AclManager{
     function createGroupImpl(string group, uint8 mode) internal{
         bytes memory groupNameBytes = bytes(group);
         require(groupNameBytes.length != 0);        
-        require(_groups[group].mode == 0);
+        require(_groups[group].mode == 0,"group already exist");
         _groups[group] = Group(mode, 0, 0);
         emit CreateGroup(group, mode);
     }
     
     event AddAccountToGroup(address account, string group);
     function addAccountToGroupImpl(address account, string group) internal{
-        require(_groups[group].mode != 0);
-        require(!_groups[group].accList[account]);
+        require(_groups[group].mode != 0,"group not exist");
+        require(!_groups[group].accList[account],"account already add");
         _groups[group].accList[account] = true;
         _groups[group].accCount++;
         emit AddAccountToGroup(account, group);
@@ -37,9 +37,9 @@ contract AclManager{
     function addFunctionToGroupImpl(address contractAddr, string func, string group) internal{
         //Checks
         Group storage g = _groups[group];
-        require(g.mode != 0);
+        require(g.mode != 0,"group not exist");
         bytes4 sig = bytes4(sha3(func));
-        require(!g.functions[contractAddr][sig]);
+        require(!g.functions[contractAddr][sig],"function already add");
         bytes memory groupNameBytes = bytes(_functionToGroups[contractAddr][sig]);
         require(groupNameBytes.length == 0);
         //Effects
@@ -51,7 +51,7 @@ contract AclManager{
     
     event RemoveAccountFromGroup(address account, string group);
     function removeAccountFromGroupImpl(address account, string group) internal{
-        require(_groups[group].accList[account]);
+        require(_groups[group].accList[account],"account not exist");
         _groups[group].accList[account]=false;
         _groups[group].accCount--;
         bytes32 sha3Group = sha3(group);
@@ -62,9 +62,9 @@ contract AclManager{
     function removeFunctionFromGroupImpl(address contractAddr, string func, string group) internal{
         //Checks
         Group storage g = _groups[group];
-        require(g.mode != 0);
+        require(g.mode != 0, "group not exist");
         bytes4 sig = bytes4(sha3(func));
-        require(g.functions[contractAddr][sig]);
+        require(g.functions[contractAddr][sig], "function not exist");
         //Effectss
         g.functions[contractAddr][sig] = false;
         g.functionCount--;
