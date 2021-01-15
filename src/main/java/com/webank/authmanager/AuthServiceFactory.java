@@ -28,10 +28,6 @@ import org.fisco.bcos.sdk.crypto.keypair.CryptoKeyPair;
  */
 public class AuthServiceFactory {
 
-    public AuthManagerFactory getAuthManagerFactory(Client client, CryptoKeyPair credentials){
-        return new AuthManagerFactory(client, credentials);
-    }
-
     public GovByAdminService getGovByAdminService(AuthManager authManager){
         return new GovByAdminService(authManager);
     }

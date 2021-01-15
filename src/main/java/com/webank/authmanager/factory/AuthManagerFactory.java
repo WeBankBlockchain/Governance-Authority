@@ -34,16 +34,11 @@ public class AuthManagerFactory {
 
     private CryptoKeyPair credentials;
 
-    public AuthManagerFactory(Client client, CryptoKeyPair credentials) {
+    public AuthManagerFactory(Client client) {
         this.client = client;
-        this.credentials = credentials;
+        this.credentials = client.getCryptoSuite().getCryptoKeyPair();
         //TODO:side effects
-        if(this.client.getCryptoType() == 1){
-            HashUtils.setHash(new SM3Hash());
-        }
-        else{
-            HashUtils.setHash(new Keccak256());
-        }
+        HashUtils.setHash(client.getCryptoSuite().getHashImpl());
     }
 
     public AuthManager createAdmin() throws Exception{
