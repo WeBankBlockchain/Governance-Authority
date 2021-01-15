@@ -24,8 +24,8 @@ public class SDKBeanConfig {
     private SystemEnvironmentConfig systemEnvironmentConfig;
 
     @Bean
-    public AuthManagerFactory authManagerFactory(Client client, CryptoKeyPair cryptoKeyPair){
-        return new AuthManagerFactory(client, cryptoKeyPair);
+    public AuthManagerFactory authManagerFactory(Client client){
+        return new AuthManagerFactory(client);
     }
 
     @Bean
