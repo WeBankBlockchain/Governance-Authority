@@ -14,8 +14,11 @@ package com.webank.authmanager.factory;
 
 import com.webank.authmanager.constant.AuthConstants;
 import com.webank.authmanager.contract.AuthManager;
+import com.webank.authmanager.utils.HashUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.fisco.bcos.sdk.client.Client;
+import org.fisco.bcos.sdk.crypto.hash.Keccak256;
+import org.fisco.bcos.sdk.crypto.hash.SM3Hash;
 import org.fisco.bcos.sdk.crypto.keypair.CryptoKeyPair;
 import org.springframework.stereotype.Component;
 
@@ -34,6 +37,13 @@ public class AuthManagerFactory {
     public AuthManagerFactory(Client client, CryptoKeyPair credentials) {
         this.client = client;
         this.credentials = credentials;
+        //TODO:side effects
+        if(this.client.getCryptoType() == 1){
+            HashUtils.setHash(new SM3Hash());
+        }
+        else{
+            HashUtils.setHash(new Keccak256());
+        }
     }
 
     public AuthManager createAdmin() throws Exception{
