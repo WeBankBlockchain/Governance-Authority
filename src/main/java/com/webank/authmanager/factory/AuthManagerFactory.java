@@ -25,7 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
-@Component
 public class AuthManagerFactory {
 
     private Client client;
