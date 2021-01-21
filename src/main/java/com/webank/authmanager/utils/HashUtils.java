@@ -12,7 +12,7 @@ public class HashUtils {
 
     private HashUtils(){}
 
-    private volatile static Hash hash = new Keccak256();
+    private static Hash hash = new Keccak256();
 
 
     public static void setHash(Hash hash) {
