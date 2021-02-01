@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.webank.authmanager.config.SystemEnvironmentConfig,\
+com.webank.authmanager.config.SDKBeanConfig\

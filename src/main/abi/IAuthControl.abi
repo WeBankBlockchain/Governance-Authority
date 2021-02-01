@@ -1,0 +1,1 @@
+[{"constant":true,"inputs":[{"name":"contractAddr","type":"address"},{"name":"sig","type":"bytes4"},{"name":"caller","type":"address"}],"name":"canCallFunction","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"}]
