@@ -7,12 +7,12 @@ WeBankBlockchain-Governance-Authority的目的在于为智能合约开发者提�
 
 ## 关键特性
 
-    - 函数级的权限粒度
-    - 批量设置用户权限
-    - 侵入性低
-    - 易于集成
-    - 支持可插拔的设计，对业务侵入小
-    - 支持多种治理方式
+- 函数级的权限粒度
+- 批量设置用户权限
+- 侵入性低
+- 易于集成
+- 支持可插拔的设计，对业务侵入小
+- 支持多种治理方式
 
 ## 环境要求
 
@@ -26,8 +26,8 @@ WeBankBlockchain-Governance-Authority的目的在于为智能合约开发者提�
 
 
 ## 文档
-- [**中文**](https://gov-doc.readthedocs.io/zh_CN/latest/docs/WeBankBlockchain-Gov-Auth/index.html)
-- [**快速开始**](https://gov-doc.readthedocs.io/zh_CN/latest/docs/WeBankBlockchain-Gov-Auth/quickstart.html)
+- [**中文**](https://governance-doc.readthedocs.io/zh_CN/latest/docs/WeBankBlockchain-Governance-Auth/index.html)
+- [**快速开始**](https://governance-doc.readthedocs.io/zh_CN/latest/docs/WeBankBlockchain-Governance-Auth/quickstart.html)
 
 
 ## 贡献代码
