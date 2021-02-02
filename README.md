@@ -26,8 +26,8 @@ WeBankBlockchain-Governance-Authority的目的在于为智能合约开发者提�
 
 
 ## 文档
-- [**中文**](https://gov-doc.readthedocs.io/zh_CN/latest/docs/WeBankBlockchain-Gov-Auth/index.html)
-- [**快速开始**](https://gov-doc.readthedocs.io/zh_CN/latest/docs/WeBankBlockchain-Gov-Auth/quickstart.html)
+- [**中文**](https://governance-doc.readthedocs.io/zh_CN/latest/docs/WeBankBlockchain-Governance-Auth/index.html)
+- [**快速开始**](https://governance-doc.readthedocs.io/zh_CN/latest/docs/WeBankBlockchain-Governance-Auth/quickstart.html)
 
 
 ## 贡献代码
