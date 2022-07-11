@@ -15,10 +15,9 @@ package common;
 import com.webank.authmanager.App;
 import com.webank.authmanager.config.SystemEnvironmentConfig;
 import com.webank.authmanager.factory.AuthManagerFactory;
-import org.fisco.bcos.sdk.client.Client;
-import org.fisco.bcos.sdk.crypto.hash.Hash;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.fisco.bcos.sdk.v3.client.Client;
+
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -35,7 +34,6 @@ import java.util.stream.Collectors;
  * @Description: BasicTest
  * @data 2020/3/5
  */
-@RunWith(SpringRunner.class)
 @SpringBootTest(classes = App.class)
 public class BasicTest {
 

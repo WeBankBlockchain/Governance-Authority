@@ -14,8 +14,7 @@ package common;
 
 import com.webank.authmanager.contract.AuthManager;
 import lombok.Getter;
-import org.fisco.bcos.sdk.crypto.keypair.CryptoKeyPair;
-import org.fisco.bcos.sdk.crypto.keypair.ECDSAKeyPair;
+import org.fisco.bcos.sdk.v3.crypto.keypair.ECDSAKeyPair;
 
 /**
  * CallContext

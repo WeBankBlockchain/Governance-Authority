@@ -2,7 +2,7 @@ package com.webank.authmanager.service;
 
 import com.webank.authmanager.contract.AuthManager;
 import com.webank.authmanager.utils.TxReceiptUtils;
-import org.fisco.bcos.sdk.model.TransactionReceipt;
+import org.fisco.bcos.sdk.v3.model.TransactionReceipt;
 
 /**
  * @author aaronchu

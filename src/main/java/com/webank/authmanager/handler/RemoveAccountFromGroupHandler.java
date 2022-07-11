@@ -5,8 +5,8 @@ import com.webank.authmanager.contract.AuthManager;
 import com.webank.authmanager.model.RemoveAccountFromGroupParam;
 import com.webank.authmanager.model.RequestInfo;
 import com.webank.authmanager.utils.TxReceiptUtils;
-import org.fisco.bcos.sdk.abi.datatypes.generated.tuples.generated.Tuple2;
-import org.fisco.bcos.sdk.abi.datatypes.generated.tuples.generated.Tuple7;
+import org.fisco.bcos.sdk.v3.codec.datatypes.generated.tuples.generated.Tuple2;
+import org.fisco.bcos.sdk.v3.codec.datatypes.generated.tuples.generated.Tuple7;
 
 import java.math.BigInteger;
 

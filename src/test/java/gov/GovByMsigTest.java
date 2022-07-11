@@ -18,8 +18,8 @@ import com.webank.authmanager.service.GovByMsigService;
 import common.BasicTest;
 import common.ContractCallContext;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -60,7 +60,7 @@ public class GovByMsigTest extends BasicTest {
         service1.getAddGovernAccountHandler().createRequest(pending.getAddress());
         log.info("request create complete");
         List<String> pendingAccounts = service1.getAddGovernAccountHandler().getPendingAccounts();
-        Assert.assertTrue(pending.getAddress().equalsIgnoreCase(pendingAccounts.get(0).substring(2)));
+        Assertions.assertTrue(pending.getAddress().equalsIgnoreCase(pendingAccounts.get(0).substring(2)));
         //Vote
         service1.getAddGovernAccountHandler().confirmRequest(pending.getAddress());
         service2.getAddGovernAccountHandler().confirmRequest(pending.getAddress());
@@ -68,7 +68,7 @@ public class GovByMsigTest extends BasicTest {
         //Execute
         service1.getAddGovernAccountHandler().executeRequest(pending.getAddress());
         pendingAccounts = service1.getAddGovernAccountHandler().getPendingAccounts();
-        Assert.assertTrue(pendingAccounts.isEmpty());
+        Assertions.assertTrue(pendingAccounts.isEmpty());
     }
 
     @Test
@@ -93,7 +93,7 @@ public class GovByMsigTest extends BasicTest {
         RequestInfo requestInfo = service1.getRemoveGovernAccountHandler().getRequest(gov3.getAddress());
         log.info("request create complete");
         List<String> pendingAccounts = service1.getRemoveGovernAccountHandler().getPendingAccounts();
-        Assert.assertTrue(gov3.getAddress().equalsIgnoreCase(pendingAccounts.get(0).substring(2)));
+        Assertions.assertTrue(gov3.getAddress().equalsIgnoreCase(pendingAccounts.get(0).substring(2)));
         //Vote
         service1.getRemoveGovernAccountHandler().confirmRequest(gov3.getAddress());
         service2.getRemoveGovernAccountHandler().confirmRequest(gov3.getAddress());
@@ -102,7 +102,7 @@ public class GovByMsigTest extends BasicTest {
         //Execute
         service1.getRemoveGovernAccountHandler().executeRequest(gov3.getAddress());
         pendingAccounts = service1.getRemoveGovernAccountHandler().getPendingAccounts();
-        Assert.assertTrue(pendingAccounts.isEmpty());
+        Assertions.assertTrue(pendingAccounts.isEmpty());
     }
 
     @Test

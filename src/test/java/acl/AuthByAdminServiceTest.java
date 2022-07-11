@@ -18,8 +18,8 @@ import com.webank.authmanager.factory.AuthManagerFactory;
 import com.webank.authmanager.service.AuthByAdminService;
 import common.BasicTest;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -49,23 +49,23 @@ public class AuthByAdminServiceTest extends BasicTest {
 
         authByAdminService.addAccountToGroup(inRoleAccount, groupName);
         boolean containsAccount = authByAdminService.containsAccount(groupName, inRoleAccount);
-        Assert.assertTrue(containsAccount);
+        Assertions.assertTrue(containsAccount);
 
         containsAccount = authByAdminService.containsAccount(groupName, outRoleAccount);
-        Assert.assertFalse(containsAccount);
+        Assertions.assertFalse(containsAccount);
 
         authByAdminService.addFunctionToGroup(contract, function, groupName);
         boolean containsFunction = authByAdminService.containsFunction(groupName, contract, function);
-        Assert.assertTrue(containsFunction);
+        Assertions.assertTrue(containsFunction);
 
         containsFunction = authByAdminService.containsFunction(groupName, contract, "whatever");
-        Assert.assertFalse(containsFunction);
+        Assertions.assertFalse(containsFunction);
 
         boolean canCall = authByAdminService.canCallFunction(contract, function, inRoleAccount);
-        Assert.assertTrue(canCall);
+        Assertions.assertTrue(canCall);
 
         canCall = authByAdminService.canCallFunction(contract, function, outRoleAccount);
-        Assert.assertFalse(canCall);
+        Assertions.assertFalse(canCall);
     }
 
     @Test
@@ -79,23 +79,23 @@ public class AuthByAdminServiceTest extends BasicTest {
 
         authByAdminService.addAccountToGroup(inRoleAccount, groupName);
         boolean containsAccount = authByAdminService.containsAccount(groupName, inRoleAccount);
-        Assert.assertTrue(containsAccount);
+        Assertions.assertTrue(containsAccount);
 
         containsAccount = authByAdminService.containsAccount(groupName, outRoleAccount);
-        Assert.assertFalse(containsAccount);
+        Assertions.assertFalse(containsAccount);
 
         authByAdminService.addFunctionToGroup(contract, function, groupName);
         boolean containsFunction = authByAdminService.containsFunction(groupName, contract, function);
-        Assert.assertTrue(containsFunction);
+        Assertions.assertTrue(containsFunction);
 
         containsFunction = authByAdminService.containsFunction(groupName, contract, "whatever");
-        Assert.assertFalse(containsFunction);
+        Assertions.assertFalse(containsFunction);
 
         boolean canCall = authByAdminService.canCallFunction(contract, function, inRoleAccount);
-        Assert.assertFalse(canCall);
+        Assertions.assertFalse(canCall);
 
         canCall = authByAdminService.canCallFunction(contract, function, outRoleAccount);
-        Assert.assertTrue(canCall);
+        Assertions.assertTrue(canCall);
     }
     @Test
     public void testRemoveAccount() throws Exception{
@@ -107,19 +107,19 @@ public class AuthByAdminServiceTest extends BasicTest {
         authByAdminService.createGroup(groupName, AuthConstants.ACL_WHITELIST_MODE);
         authByAdminService.addAccountToGroup(inRoleAccount, groupName);
         boolean containsAccount = authByAdminService.containsAccount(groupName, inRoleAccount);
-        Assert.assertTrue(containsAccount);
+        Assertions.assertTrue(containsAccount);
 
         authByAdminService.addFunctionToGroup(contract, function, groupName);
         boolean canCall = authByAdminService.canCallFunction(contract, function, inRoleAccount);
-        Assert.assertTrue(canCall);
+        Assertions.assertTrue(canCall);
 
         //
         authByAdminService.removeAccountFromGroup(inRoleAccount, groupName);
         containsAccount = authByAdminService.containsAccount(groupName, inRoleAccount);
-        Assert.assertFalse(containsAccount);
+        Assertions.assertFalse(containsAccount);
 
         canCall = authByAdminService.canCallFunction(contract, function, inRoleAccount);
-        Assert.assertFalse(canCall);
+        Assertions.assertFalse(canCall);
     }
     @Test
     public void testRemoveFunction() throws Exception{
@@ -132,18 +132,18 @@ public class AuthByAdminServiceTest extends BasicTest {
         authByAdminService.addAccountToGroup(inRoleAccount, group);
         authByAdminService.addFunctionToGroup(contract, function, group);
         boolean containsFunction = authByAdminService.containsFunction(group, contract, function);
-        Assert.assertTrue(containsFunction);
+        Assertions.assertTrue(containsFunction);
 
         boolean canCall = authByAdminService.canCallFunction(contract, function, inRoleAccount);
-        Assert.assertFalse(canCall);
+        Assertions.assertFalse(canCall);
 
         //
         authByAdminService.removeFunctionFromGroup(contract,function, group);
         containsFunction = authByAdminService.containsFunction(group, contract, function);
-        Assert.assertFalse(containsFunction);
+        Assertions.assertFalse(containsFunction);
 
         canCall = authByAdminService.canCallFunction(contract, function, inRoleAccount);
-        Assert.assertTrue(canCall);
+        Assertions.assertTrue(canCall);
     }
 
     @Test

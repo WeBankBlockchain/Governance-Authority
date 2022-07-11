@@ -2,7 +2,6 @@ package com.webank.authmanager.service;
 
 import com.webank.authmanager.contract.AuthManager;
 import com.webank.authmanager.utils.TxReceiptUtils;
-import org.fisco.bcos.sdk.crypto.hash.Hash;
 
 import java.math.BigInteger;
 

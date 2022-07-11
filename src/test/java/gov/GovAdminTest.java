@@ -17,9 +17,10 @@ import com.webank.authmanager.service.GovByAdminService;
 import common.BasicTest;
 import common.ContractCallContext;
 import lombok.extern.slf4j.Slf4j;
-import org.fisco.bcos.sdk.crypto.keypair.CryptoKeyPair;
-import org.junit.Assert;
-import org.junit.Test;
+import org.fisco.bcos.sdk.v3.crypto.keypair.CryptoKeyPair;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -43,7 +44,7 @@ public class GovAdminTest extends BasicTest {
         log.info(authManager.getContractAddress());
 
         boolean isAdmin = authManager.isAdmin();
-        Assert.assertTrue(isAdmin);
+        Assertions.assertTrue(isAdmin);
 
         //Transfer
         String finalAdmin = "0x5c5bf65a384cf078afe31ab4a6137e91f180a105";
@@ -52,14 +53,14 @@ public class GovAdminTest extends BasicTest {
 
         //Verify
         isAdmin = authManager.isAdmin();
-        Assert.assertFalse(isAdmin);
+        Assertions.assertFalse(isAdmin);
 
         ContractCallContext ctx = new ContractCallContext("0xca8f81734944176eb1fa83cc1d01c594d64caa5387fe665688e8d30a5b6a3e62",
                 "bc982d507fc05f0e3d94be813b35efe40a708fe35ffe4b7500c157f5be01ecabac4c1ba6e35cbfbf3e8a09bad0b96505939b4422a4b6a613c79ab85d1a80fced",
                 finalAdmin);
         authManager = ctx.getAuthManager(authManager);//From final admin's perspective
         isAdmin = authManager.isAdmin();
-        Assert.assertTrue(isAdmin);
+        Assertions.assertTrue(isAdmin);
     }
 
 }

@@ -15,13 +15,10 @@
  */
 package com.webank.authmanager.config;
 
-import com.webank.authmanager.utils.HashUtils;
-import org.springframework.beans.factory.InitializingBean;
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
-
-import lombok.Data;
 
 /**
  * System Environment Config.
@@ -37,5 +34,5 @@ import lombok.Data;
 @Order(5)
 public class SystemEnvironmentConfig{
     private String sdkConfigPath;
-    private int groupId;
+    private String groupId;
 }

@@ -14,10 +14,10 @@ package utils;
 
 import com.webank.authmanager.utils.FunctionUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.fisco.bcos.sdk.crypto.hash.Hash;
-import org.fisco.bcos.sdk.utils.Hex;
-import org.junit.Assert;
-import org.junit.Test;
+import org.fisco.bcos.sdk.v3.utils.Hex;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -33,10 +33,10 @@ public class FunctionUtilsTest {
     @Test
     public void test() throws Exception{
         byte[] bytes = FunctionUtils.resolveFuncSig("add(uint256,uint256)");
-        Assert.assertEquals("771602f7", Hex.toHexString(bytes));
+        Assertions.assertEquals("771602f7", Hex.toHexString(bytes));
 
         bytes = FunctionUtils.resolveFuncSig("demo(uint256)");
-        Assert.assertEquals("071bd079", Hex.toHexString(bytes));
+        Assertions.assertEquals("071bd079", Hex.toHexString(bytes));
 
         bytes = FunctionUtils.resolveFuncSig("set(uint256,string,uint256[])");
         System.out.println( Hex.toHexString(bytes));

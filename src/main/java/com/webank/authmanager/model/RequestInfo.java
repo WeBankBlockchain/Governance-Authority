@@ -2,7 +2,6 @@ package com.webank.authmanager.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 
 import java.math.BigInteger;
 

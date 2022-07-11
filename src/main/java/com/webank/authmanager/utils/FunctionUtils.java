@@ -13,7 +13,7 @@
 package com.webank.authmanager.utils;
 
 
-import org.fisco.bcos.sdk.crypto.hash.Hash;
+import org.fisco.bcos.sdk.v3.crypto.hash.Hash;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;

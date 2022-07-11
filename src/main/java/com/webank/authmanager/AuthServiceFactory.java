@@ -13,11 +13,7 @@
 package com.webank.authmanager;
 
 import com.webank.authmanager.contract.AuthManager;
-import com.webank.authmanager.factory.AuthManagerFactory;
 import com.webank.authmanager.service.*;
-import org.fisco.bcos.sdk.client.Client;
-import org.fisco.bcos.sdk.crypto.hash.Hash;
-import org.fisco.bcos.sdk.crypto.keypair.CryptoKeyPair;
 
 /**
  * AuthServiceFactory

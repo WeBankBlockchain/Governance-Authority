@@ -16,8 +16,8 @@ import com.webank.authmanager.contract.AuthManager;
 import com.webank.authmanager.service.GovByMsigService;
 import common.BasicTest;
 import common.ContractCallContext;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 
 import java.math.BigInteger;
@@ -50,10 +50,10 @@ public class RequestTest extends BasicTest {
         service1.getResetThresholdHandler().createRequest(3);
         try{
             service2.getResetThresholdHandler().createRequest(3);
-            Assert.assertTrue(false);
+            Assertions.assertTrue(false);
         }
         catch (Exception ex){
-            Assert.assertTrue(true);
+            Assertions.assertTrue(true);
         }
     }
 
@@ -76,11 +76,11 @@ public class RequestTest extends BasicTest {
         service1.getAddGovernAccountHandler().createRequest("0x86726511057e38aec9320a63c466310c1e511355");
         try{
             service2.getAddGovernAccountHandler().createRequest("0x86726511057e38aec9320a63c466310c1e511355");
-            Assert.assertTrue(false);
+            Assertions.assertTrue(false);
         }
         catch (Exception ex){
             ex.printStackTrace();
-            Assert.assertTrue(true);
+            Assertions.assertTrue(true);
         }
     }
 

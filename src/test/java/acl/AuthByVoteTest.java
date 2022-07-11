@@ -18,8 +18,8 @@ import com.webank.authmanager.model.RequestInfo;
 import com.webank.authmanager.service.AuthByVoteService;
 import common.BasicTest;
 import common.ContractCallContext;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -66,8 +66,8 @@ public class AuthByVoteTest extends BasicTest {
         service1.getCreateGroupHandler().confirm();
         service2.getCreateGroupHandler().confirm();
         RequestInfo pendingInfo = service1.getCreateGroupHandler().getRequest();
-        Assert.assertEquals(AuthConstants.CREATE_GROUP, pendingInfo.getTxType());
-        Assert.assertEquals(BigInteger.valueOf(3), pendingInfo.getWeight());
+        Assertions.assertEquals(AuthConstants.CREATE_GROUP, pendingInfo.getTxType());
+        Assertions.assertEquals(BigInteger.valueOf(3), pendingInfo.getWeight());
         service1.getCreateGroupHandler().execute();
 
         //Add account to group
@@ -75,19 +75,19 @@ public class AuthByVoteTest extends BasicTest {
         service1.getAddAccountToGroupHandler().confirm();
         service2.getAddAccountToGroupHandler().confirm();
         service2.getAddAccountToGroupHandler().execute();
-        Assert.assertTrue(service1.containsAccount(groupName, inRoleAccount));
-        Assert.assertFalse(service1.containsAccount(groupName, outRoleAccount));
+        Assertions.assertTrue(service1.containsAccount(groupName, inRoleAccount));
+        Assertions.assertFalse(service1.containsAccount(groupName, outRoleAccount));
         //Add function to group
         service1.getAddFunctionToGroupHandler().request(contract, function, groupName);
         service1.getAddFunctionToGroupHandler().confirm();
         service2.getAddFunctionToGroupHandler().confirm();
         service2.getAddFunctionToGroupHandler().execute();
-        Assert.assertTrue(service1.containsFunction(groupName, contract, function));
-        Assert.assertFalse(service2.containsFunction(groupName, contract, "whatever"));
+        Assertions.assertTrue(service1.containsFunction(groupName, contract, function));
+        Assertions.assertFalse(service2.containsFunction(groupName, contract, "whatever"));
 
         //Verify
-        Assert.assertTrue(service1.canCallFunction(contract, function, inRoleAccount));
-        Assert.assertFalse(service1.canCallFunction(contract, function, outRoleAccount));
+        Assertions.assertTrue(service1.canCallFunction(contract, function, inRoleAccount));
+        Assertions.assertFalse(service1.canCallFunction(contract, function, outRoleAccount));
     }
 
     @Test
@@ -115,8 +115,8 @@ public class AuthByVoteTest extends BasicTest {
         service1.getCreateGroupHandler().confirm();
         service2.getCreateGroupHandler().confirm();
         RequestInfo pendingInfo = service1.getCreateGroupHandler().getRequest();
-        Assert.assertEquals(AuthConstants.CREATE_GROUP, pendingInfo.getTxType());
-        Assert.assertEquals(BigInteger.valueOf(3), pendingInfo.getWeight());
+        Assertions.assertEquals(AuthConstants.CREATE_GROUP, pendingInfo.getTxType());
+        Assertions.assertEquals(BigInteger.valueOf(3), pendingInfo.getWeight());
         service1.getCreateGroupHandler().execute();
 
         //Add account to group
@@ -124,19 +124,19 @@ public class AuthByVoteTest extends BasicTest {
         service1.getAddAccountToGroupHandler().confirm();
         service2.getAddAccountToGroupHandler().confirm();
         service2.getAddAccountToGroupHandler().execute();
-        Assert.assertTrue(service1.containsAccount(group, inRoleAccount));
-        Assert.assertFalse(service1.containsAccount(group, outRoleAccount));
+        Assertions.assertTrue(service1.containsAccount(group, inRoleAccount));
+        Assertions.assertFalse(service1.containsAccount(group, outRoleAccount));
         //Add function to group
         service1.getAddFunctionToGroupHandler().request(contract, function, group);
         service1.getAddFunctionToGroupHandler().confirm();
         service2.getAddFunctionToGroupHandler().confirm();
         service2.getAddFunctionToGroupHandler().execute();
-        Assert.assertTrue(service1.containsFunction(group, contract, function));
-        Assert.assertFalse(service2.containsFunction(group, contract, "whatever"));
+        Assertions.assertTrue(service1.containsFunction(group, contract, function));
+        Assertions.assertFalse(service2.containsFunction(group, contract, "whatever"));
 
         //Verify
-        Assert.assertFalse(service1.canCallFunction(contract, function, inRoleAccount));
-        Assert.assertTrue(service1.canCallFunction(contract, function, outRoleAccount));
+        Assertions.assertFalse(service1.canCallFunction(contract, function, inRoleAccount));
+        Assertions.assertTrue(service1.canCallFunction(contract, function, outRoleAccount));
     }
 
 
@@ -170,7 +170,7 @@ public class AuthByVoteTest extends BasicTest {
         service2.getAddAccountToGroupHandler().confirm();
         service1.getAddAccountToGroupHandler().execute();
         boolean containsAccount = service1.containsAccount(group, inRoleAccount);
-        Assert.assertTrue(containsAccount);
+        Assertions.assertTrue(containsAccount);
 
         //Remove account
         service1.getRemoveAccountFromGroupHandler().request(inRoleAccount, group);
@@ -178,7 +178,7 @@ public class AuthByVoteTest extends BasicTest {
         service2.getRemoveAccountFromGroupHandler().confirm();
         service1.getRemoveAccountFromGroupHandler().execute();
         containsAccount = service1.containsAccount(group, inRoleAccount);
-        Assert.assertFalse(containsAccount);
+        Assertions.assertFalse(containsAccount);
     }
 
     @Test
@@ -211,7 +211,7 @@ public class AuthByVoteTest extends BasicTest {
         service2.getAddFunctionToGroupHandler().confirm();
         service1.getAddFunctionToGroupHandler().execute();
         boolean containsFunction = service1.containsFunction(group, contract, function);
-        Assert.assertTrue(containsFunction);
+        Assertions.assertTrue(containsFunction);
 
         //Remove account
         service1.getRemoveFunctionFromGroupHandler().request(contract, function, group);
@@ -219,7 +219,7 @@ public class AuthByVoteTest extends BasicTest {
         service2.getRemoveFunctionFromGroupHandler().confirm();
         service1.getRemoveFunctionFromGroupHandler().execute();
         containsFunction = service1.containsAccount(group, inRoleAccount);
-        Assert.assertFalse(containsFunction);
+        Assertions.assertFalse(containsFunction);
     }
 }
 

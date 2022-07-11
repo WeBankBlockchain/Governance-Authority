@@ -1,7 +1,6 @@
 package com.webank.authmanager.model;
 
 import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author aaronchu

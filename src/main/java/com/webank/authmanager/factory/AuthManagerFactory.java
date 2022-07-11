@@ -16,12 +16,8 @@ import com.webank.authmanager.constant.AuthConstants;
 import com.webank.authmanager.contract.AuthManager;
 import com.webank.authmanager.utils.HashUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.fisco.bcos.sdk.client.Client;
-import org.fisco.bcos.sdk.crypto.hash.Keccak256;
-import org.fisco.bcos.sdk.crypto.hash.SM3Hash;
-import org.fisco.bcos.sdk.crypto.keypair.CryptoKeyPair;
-import org.springframework.stereotype.Component;
-
+import org.fisco.bcos.sdk.v3.client.Client;
+import org.fisco.bcos.sdk.v3.crypto.keypair.CryptoKeyPair;
 
 import java.math.BigInteger;
 import java.util.ArrayList;

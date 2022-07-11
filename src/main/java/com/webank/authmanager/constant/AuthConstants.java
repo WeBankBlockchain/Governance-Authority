@@ -1,7 +1,5 @@
 package com.webank.authmanager.constant;
 
-import com.fasterxml.jackson.databind.node.BigIntegerNode;
-
 import java.math.BigInteger;
 
 public class AuthConstants {
