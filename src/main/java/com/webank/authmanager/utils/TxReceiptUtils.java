@@ -28,7 +28,7 @@ public class TxReceiptUtils {
 
     public static void ensureTxSucceed(TransactionReceipt receipt) throws AuthException {
         try{
-            ReceiptParser.parseTransactionReceipt(receipt);
+            ReceiptParser.parseTransactionReceipt(receipt,null);
         }
         catch (ContractException ex){
             throw new AuthException(ex.getMessage());

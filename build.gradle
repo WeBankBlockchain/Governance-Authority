@@ -59,7 +59,7 @@ dependencies {
 //        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
         exclude group: 'junit', module: 'junit'
     }
-    implementation ('org.fisco-bcos.java-sdk:fisco-bcos-java-sdk:3.0.0-rc3'){
+    implementation ('org.fisco-bcos.java-sdk:fisco-bcos-java-sdk:3.0.0'){
         exclude group: 'org.slf4j'
     }
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.2'
